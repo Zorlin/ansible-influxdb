@@ -9,8 +9,8 @@
     state: present
     update_cache: yes
     cache_valid_time: 3600
-  when: ansible_distribution == 'Debian' and ansible_distribution_major_version < 11
-        or ansible_distribution == 'Ubuntu' and ansible_distribution_major_version < 22
+  when: ansible_distribution == 'Debian' and ansible_distribution_major_version|int < 11
+        or ansible_distribution == 'Ubuntu' and ansible_distribution_major_version|int < 22
 
 - name: Install any necessary dependencies [Debian/Ubuntu]
   apt:
@@ -22,8 +22,8 @@
     state: present
     update_cache: yes
     cache_valid_time: 3600
-  when: ansible_distribution == 'Debian' and ansible_distribution_major_version >= 11
-        or ansible_distribution == 'Ubuntu' and ansible_distribution_major_version >= 22
+  when: ansible_distribution == 'Debian' and ansible_distribution_major_version|int >= 11
+        or ansible_distribution == 'Ubuntu' and ansible_distribution_major_version|int >= 22
 
 - name: Install any necessary PIP dependencies [Debian/Ubuntu]
   apt:
@@ -31,8 +31,8 @@
     state: present 
     update_cache: yes 
     cache_valid_time: 3600
-  when: influxdb_install_python_client and ansible_distribution == 'Debian' and ansible_distribution_major_version < 11
-        or influxdb_install_python_client and ansible_distribution == 'Ubuntu' and ansible_distribution_major_version < 22
+  when: influxdb_install_python_client and ansible_distribution == 'Debian' and ansible_distribution_major_version|int < 11
+        or influxdb_install_python_client and ansible_distribution == 'Ubuntu' and ansible_distribution_major_version|int < 22
 
 - name: Install any necessary PIP dependencies [Debian/Ubuntu]
   apt:
@@ -40,8 +40,8 @@
     state: present
     update_cache: yes
     cache_valid_time: 3600
-  when: influxdb_install_python_client and ansible_distribution == 'Debian' and ansible_distribution_major_version >= 11
-        or influxdb_install_python_client and ansible_distribution == 'Ubuntu' and ansible_distribution_major_version >= 22
+  when: influxdb_install_python_client and ansible_distribution == 'Debian' and ansible_distribution_major_version|int >= 11
+        or influxdb_install_python_client and ansible_distribution == 'Ubuntu' and ansible_distribution_major_version|int >= 22
 
 - name: Import InfluxData GPG signing key [Debian/Ubuntu]
   apt_key:
